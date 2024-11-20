@@ -1,7 +1,10 @@
 import React from "react";
 import Card from "../ui/Card";
+import useUser from "../hooks/useUser";
 
 function Account() {
+  const { user } = useUser();
+
   return (
     <div className="mt-4 flex max-w-4xl mx-auto gap-6">
       <Card className="w-[632px] h-[744px]">
@@ -21,7 +24,7 @@ function Account() {
                 id="username"
                 type="text"
                 placeholder="Username"
-                // value="" TO-DO NAPRAVI DA OVDE PO DEAFULTU BUDE IME KORISNIKA TAKODJE I EMAIL
+                value={user?.firstName}
               />
             </div>
             <div className="mb-4">
@@ -36,6 +39,7 @@ function Account() {
                 id="email"
                 type="email"
                 placeholder="Email"
+                value={user?.email}
               />
             </div>
             <div className="mb-4">

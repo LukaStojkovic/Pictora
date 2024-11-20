@@ -1,3 +1,4 @@
+import { QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 export async function register(userData) {
@@ -27,4 +28,9 @@ export async function login(userData) {
   localStorage.setItem("token", data.data.token);
 
   return data;
+}
+
+export async function logout() {
+  localStorage.removeItem("token");
+  QueryClient.invalidateQueries(["user", { refetchActive: true }]);
 }

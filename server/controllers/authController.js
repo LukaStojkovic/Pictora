@@ -53,7 +53,7 @@ export const login = async (req, res) => {
     res.status(200).json({
       status: "success",
       token,
-      data: { user },
+      user,
     });
   } catch (err) {
     res.status(500).json({

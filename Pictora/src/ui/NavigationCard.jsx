@@ -1,16 +1,14 @@
 import { HiOutlineHome, HiOutlineLogout } from "react-icons/hi";
 import Card from "./Card";
 import { CgProfile } from "react-icons/cg";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import useLogout from "../hooks/useLogout";
 
 export default function NavigationCard() {
-  const navigate = useNavigate();
+  const { logout } = useLogout();
 
   function handleLogout() {
-    localStorage.removeItem("token");
-    navigate("/login");
-    toast.success("You Successfuly Logged out");
+    logout();
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "../ui/Card";
 import { FiSend } from "react-icons/fi";
 import Post from "./Post";
