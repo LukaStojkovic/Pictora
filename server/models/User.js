@@ -29,6 +29,7 @@ const UserSchema = new mongoose.Schema(
     },
     picturePath: {
       type: String,
+      default: "default-user.jpg",
     },
     location: {
       type: String,

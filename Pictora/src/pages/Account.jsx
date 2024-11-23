@@ -51,7 +51,7 @@ function Account() {
               </label>
               <div className="flex gap-4 items-center justify-center">
                 <img
-                  src="https://placehold.co/50x50"
+                  src={`/assets/${user?.picturePath}`}
                   className="rounded-[50%] h-[4.5rem] w-[4.5rem]"
                 />
                 <input

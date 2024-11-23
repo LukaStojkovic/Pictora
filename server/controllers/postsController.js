@@ -9,7 +9,7 @@ export async function createPost(req, res) {
     const newPost = new Post({
       userId,
       description,
-      picturePath,
+      picturePath: req.file?.filename,
       firstName: user.firstName,
       lastName: user.lastName,
       location: user.location,

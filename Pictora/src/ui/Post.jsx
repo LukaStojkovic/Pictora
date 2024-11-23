@@ -7,15 +7,15 @@ function Post({ postData }) {
     <div className="mb-6">
       <div className="flex items-center mb-2">
         <img
-          src="https://placehold.co/50x50"
+          src={`assets/${postData?.userPicturePath}`}
           alt="User profile picture"
           className="w-10 h-10 rounded-full mr-2"
         />
-        <div className="font-bold">{postData.firstName}</div>
+        <div className="font-bold">{postData?.firstName}</div>
       </div>
-      <div className="mb-2">{postData.description}</div>
+      <div className="mb-2">{postData?.description}</div>
       <img
-        src="https://fakeimg.pl/600x400"
+        src={`assets/${postData?.picturePath}`}
         alt="Post image"
         className="w-full rounded-lg"
       />

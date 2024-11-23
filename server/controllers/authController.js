@@ -16,7 +16,7 @@ export const register = async (req, res) => {
       email,
       password: encryptedPassword,
       location,
-      picturePath,
+      picturePath: req.file?.filename,
     });
     const user = await newUser.save();
     res.status(201).json({
