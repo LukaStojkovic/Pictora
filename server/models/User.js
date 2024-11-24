@@ -33,6 +33,15 @@ const UserSchema = new mongoose.Schema(
     },
     location: {
       type: String,
+      required: true,
+    },
+    aboutMe: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

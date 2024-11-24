@@ -4,8 +4,22 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, picturePath, location } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      location,
+      aboutMe,
+      description,
+    } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(409).json({
+        status: "fail",
+        message: "Email already in use!",
+      });
 
     const salt = await bcrypt.genSalt();
     const encryptedPassword = await bcrypt.hash(password, salt);
@@ -17,6 +31,8 @@ export const register = async (req, res) => {
       password: encryptedPassword,
       location,
       picturePath: req.file?.filename,
+      aboutMe,
+      description,
     });
     const user = await newUser.save();
     res.status(201).json({

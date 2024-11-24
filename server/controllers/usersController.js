@@ -41,3 +41,40 @@ export async function getMe(req, res) {
     });
   }
 }
+
+export async function updateUser(req, res) {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        aboutMe: req.body.aboutMe,
+        description: req.body.description,
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        picturePath: req.file?.filename,
+      },
+      { runValidators: true, new: true }
+    );
+
+    if (!user)
+      return res.status(404).json({
+        status: "fail",
+        message: "User does not exist",
+      });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+}

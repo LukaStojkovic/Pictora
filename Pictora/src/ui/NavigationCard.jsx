@@ -21,12 +21,15 @@ export default function NavigationCard() {
         <Link to="/" className=" flex gap-2 py-3 items-center">
           <CiHome size={20} /> Home
         </Link>
-        <Link to="#" className=" flex gap-2 py-3 items-center">
+        <Link
+          to={`/profile/${user?._id}`}
+          className=" flex gap-2 py-3 items-center"
+        >
           <CiUser size={20} />
           My Profile
         </Link>
 
-        <Link to="/my-profile" className=" flex gap-2 py-3 items-center">
+        <Link to="/account" className=" flex gap-2 py-3 items-center">
           <CiSettings size={20} />
           Settings
         </Link>
@@ -34,11 +37,13 @@ export default function NavigationCard() {
         {user && (
           <div className="mt-20">
             <div className="flex items-center mb-2">
-              <img
-                src={`/assets/${user.picturePath}`}
-                alt="User profile picture"
-                className="w-10 h-10 rounded-full mr-2"
-              />
+              <Link to={`/profile/${user._id}`}>
+                <img
+                  src={`/assets/${user.picturePath}`}
+                  alt="User profile picture"
+                  className="w-10 h-10 rounded-full mr-2"
+                />
+              </Link>
               <div>{user.firstName}</div>
               <div className="ml-auto">
                 <Link to="/login" onClick={handleLogout}>

@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
+import Spinner from "../ui/Spinner";
 
 function Login() {
   const {
@@ -15,6 +16,8 @@ function Login() {
   function handleSubmitLogin(data) {
     login(data);
   }
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">

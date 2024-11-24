@@ -7,18 +7,19 @@ import { CiImageOn, CiFileOn } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import useCreatePost from "../hooks/useCreatePost";
 import useUser from "../hooks/useUser";
+import Spinner from "./Spinner";
 
 function HomeMain() {
   const { posts, isLoading: isLoadingFeedPosts } = useGetFeedPosts();
   const { user } = useUser();
-  const { createPost, isLoading } = useCreatePost();
+  const { createPost, isLoading: isLoadingCreatePost } = useCreatePost();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  if (isLoadingFeedPosts) return <p>Loading...</p>;
+  if (isLoadingFeedPosts || isLoadingCreatePost) return <Spinner />;
 
   function makePost(data) {
     const formData = new FormData();
@@ -40,6 +41,7 @@ function HomeMain() {
               className="border rounded-lg grow py-4 px-4"
               {...register("description", { required: true })}
             />
+
             <button
               type="submit"
               className="bg-socialBlue p-3 rounded-full text-gray-50"
@@ -65,9 +67,16 @@ function HomeMain() {
         </form>
       </Card>
       <Card>
-        {posts.data.posts.map((post) => (
-          <Post key={post._id} postData={post} />
-        ))}
+        {posts?.data.posts?.length > 0 ? (
+          posts.data.posts.map((post) => (
+            <Post key={post._id} postData={post} />
+          ))
+        ) : (
+          <p className="font-semibold">
+            It looks a bit quiet here... Why not kick things off and start
+            posting?
+          </p>
+        )}
       </Card>
     </div>
   );

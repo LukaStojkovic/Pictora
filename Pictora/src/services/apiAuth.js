@@ -2,16 +2,21 @@ import { QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 export async function register(userData) {
-  const data = await axios({
-    method: "post",
-    url: "http://127.0.0.1:8000/auth/register",
-    data: userData,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  try {
+    const data = await axios({
+      method: "post",
+      url: "http://127.0.0.1:8000/auth/register",
+      data: userData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-  if (!data) throw new Error("Something went wrong!");
-
-  return data;
+    return data;
+  } catch (err) {
+    if (err.response?.status === 409) {
+      throw new Error(err.response.data.message);
+    }
+    throw new Error(err.response?.data?.message || "Something went wrong!");
+  }
 }
 
 export async function login(userData) {

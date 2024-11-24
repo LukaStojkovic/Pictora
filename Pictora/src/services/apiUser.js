@@ -13,3 +13,34 @@ export async function getMe() {
 
   return user.data.user;
 }
+
+export async function getUser(id) {
+  const user = await axios({
+    method: "GET",
+    url: `http://127.0.0.1:8000/users/${id}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  if (!user) throw new Error("Something went wrong!");
+
+  return user.data.user;
+}
+
+export async function updateUser(id, userData) {
+  const response = await axios({
+    method: "PATCH",
+    url: `http://127.0.0.1:8000/users/${id}`,
+    data: userData,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.data || !response.data.data)
+    throw new Error("Something went wrong!");
+
+  return response.data.data.user;
+}

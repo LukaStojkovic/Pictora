@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useRegister from "../hooks/useRegister";
+import Spinner from "../ui/Spinner";
 
 function Register() {
   const {
@@ -154,7 +155,7 @@ function Register() {
               type="submit"
               disabled={isLoading}
             >
-              Register
+              {isLoading ? <Spinner /> : "Register"}
             </button>
             <Link
               className="text-sm font-bold text-socialBlue hover:text-blue-600"

@@ -15,7 +15,10 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     location: String,
-    description: String,
+    description: {
+      type: String,
+      maxlength: 500,
+    },
     userPicturePath: String,
     picturePath: String,
     likes: {

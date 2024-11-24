@@ -1,4 +1,5 @@
 import axios from "axios";
+import useUser from "../hooks/useUser";
 
 export async function getFeedPosts() {
   const posts = await axios({
@@ -25,4 +26,35 @@ export async function createPost(postData) {
 
   if (!newPost) throw new Error("Something went wrong creating post!");
   return newPost;
+}
+
+export async function getUserPosts(userId) {
+  const userPosts = await axios({
+    method: "GET",
+    url: `http://127.0.0.1:8000/post/${userId}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  if (!userPosts) throw new Error("Something went wrong!");
+  return userPosts;
+}
+
+export async function likePost(postData, user) {
+  try {
+    const response = await axios.patch(
+      `http://127.0.0.1:8000/post/${postData?._id}/like`,
+      { userId: user?._id },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    return response.data.updatedPost;
+  } catch (err) {
+    console.error(err.message);
+  }
 }

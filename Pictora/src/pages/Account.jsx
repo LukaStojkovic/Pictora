@@ -1,17 +1,40 @@
 import React from "react";
 import Card from "../ui/Card";
 import useUser from "../hooks/useUser";
+import { useForm } from "react-hook-form";
+import { useUpdateUser } from "../hooks/useUpdateUser";
+import Spinner from "../ui/Spinner";
 
 function Account() {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { updateUser } = useUpdateUser(user?._id);
+
+  function handleUpdateUser(data) {
+    const userData = {};
+
+    if (data?.firstName) userData.firstName = data.firstName;
+    if (data?.aboutMe) userData.aboutMe = data.aboutMe;
+    if (data?.description) userData.description = data.description;
+    if (data?.email) userData.email = data.email;
+    // if (data?.picture) userData.picture = data.picture[0];
+
+    updateUser(userData);
+  }
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="mt-4 flex max-w-4xl mx-auto gap-6">
-      <Card className="w-[632px] h-[744px]">
+      <Card className="w-[632px] h-[900px]">
         <div className="flex gap-5 flex-col">
           <span className="text-xl">Account Settings</span>
 
-          <form>
+          <form onSubmit={handleSubmit(handleUpdateUser)}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -24,7 +47,8 @@ function Account() {
                 id="username"
                 type="text"
                 placeholder="Username"
-                value={user?.firstName}
+                defaultValue={user?.firstName}
+                {...register("firstName")}
               />
             </div>
             <div className="mb-4">
@@ -39,13 +63,44 @@ function Account() {
                 id="email"
                 type="email"
                 placeholder="Email"
-                value={user?.email}
+                defaultValue={user?.email}
+                {...register("email")}
               />
             </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="profile-picture"
+                htmlFor="email"
+              >
+                About me
+              </label>
+              <input
+                className="shadow-md border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="aboutMe"
+                type="aboutMe"
+                placeholder="About me"
+                {...register("aboutMe")}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="email"
+              >
+                Description
+              </label>
+              <input
+                className="shadow-md border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="description"
+                type="description"
+                placeholder="Description"
+                {...register("description")}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="picture"
               >
                 Profile Picture
               </label>
@@ -56,11 +111,12 @@ function Account() {
                 />
                 <input
                   className="shadow-md border rounded w-[0.1px] h-[0.1px] py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 absolute z-[-1]"
-                  id="photo"
+                  id="picture"
                   type="file"
+                  // {...register("picture")}
                 />
                 <label
-                  htmlFor="photo"
+                  htmlFor="picture"
                   className="cursor-pointer rounded-md text-gray-600"
                 >
                   Browse image
@@ -69,7 +125,7 @@ function Account() {
             </div>
             <div className="flex justify-center">
               <button
-                type="button"
+                type="submit"
                 className="bg-socialBlue hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Save
