@@ -16,6 +16,7 @@ export default function NavigationCard() {
   return (
     <Card>
       <div className="px-4">
+        {/* <img src="public/assets/logo/Pictora-dark-logo.png" /> */}
         <h2 className="text-gray-400 mb-3">Navigation</h2>
 
         <Link to="/" className=" flex gap-2 py-3 items-center">

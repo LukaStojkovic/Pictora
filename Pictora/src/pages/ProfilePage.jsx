@@ -21,11 +21,14 @@ function MyProfile() {
     <div className="grow mt-4">
       <Card className="w-[632px]">
         <div className="flex items-center gap-4">
-          <img
-            src={`/assets/${user?.picturePath}`}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover"
-          />
+          {user?.picturePath && (
+            <img
+              src={`/assets/${user.picturePath}`}
+              alt="Profile"
+              className="w-24 h-24 rounded-full object-cover"
+            />
+          )}
+
           <div>
             <h1 className="text-2xl font-bold">
               {user?.firstName} {user?.lastName}
@@ -59,9 +62,13 @@ function MyProfile() {
           {user?.firstName}'s Posts
         </h2>
         <div className="space-y-4">
-          {userPosts?.data?.posts.map((post) => (
-            <ProfilePost postData={post} key={post._id} />
-          ))}
+          {userPosts?.data?.posts.length > 0 ? (
+            userPosts?.data?.posts.map((post) => (
+              <ProfilePost postData={post} key={post._id} />
+            ))
+          ) : (
+            <p className="text-sm">This user don't have any posts yet.</p>
+          )}
         </div>
       </Card>
     </div>
