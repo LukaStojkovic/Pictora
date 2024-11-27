@@ -9,11 +9,11 @@ export function useLogin() {
   const { mutate: login, isLoading } = useMutation({
     mutationFn: (data) => loginFn(data),
     onSuccess: () => {
-      toast.success("You Successfuly Logged in!");
+      toast.success("Successfully logged in!");
       navigate("/");
     },
     onError: () => {
-      toast.error("Invalid Password or Email");
+      toast.error("Invalid password or email.");
     },
   });
 

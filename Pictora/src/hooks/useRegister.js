@@ -9,7 +9,7 @@ export function useRegister() {
   const { mutate: register, isLoading } = useMutation({
     mutationFn: (data) => registerFn(data),
     onSuccess: () => {
-      toast.success("You successfuly registered!");
+      toast.success("Successfully registered!");
       navigate("/login");
     },
     onError: (er) => {

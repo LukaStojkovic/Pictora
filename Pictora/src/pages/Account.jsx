@@ -15,13 +15,13 @@ function Account() {
   const { updateUser } = useUpdateUser(user?._id);
 
   function handleUpdateUser(data) {
-    const userData = {};
+    const userData = new FormData();
 
-    if (data?.firstName) userData.firstName = data.firstName;
-    if (data?.aboutMe) userData.aboutMe = data.aboutMe;
-    if (data?.description) userData.description = data.description;
-    if (data?.email) userData.email = data.email;
-    // if (data?.picture) userData.picture = data.picture[0];
+    if (data?.firstName) userData.append("firstName", data.firstName);
+    if (data?.aboutMe) userData.append("aboutMe", data.aboutMe);
+    if (data?.description) userData.append("description", data.description);
+    if (data?.email) userData.append("email", data.email);
+    if (data?.picture) userData.append("picture", data.picture[0]);
 
     updateUser(userData);
   }
@@ -113,7 +113,7 @@ function Account() {
                   className="shadow-md border rounded w-[0.1px] h-[0.1px] py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 absolute z-[-1]"
                   id="picture"
                   type="file"
-                  // {...register("picture")}
+                  {...register("picture")}
                 />
                 <label
                   htmlFor="picture"

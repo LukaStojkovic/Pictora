@@ -35,7 +35,7 @@ export async function updateUser(id, userData) {
     data: userData,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
   });
 

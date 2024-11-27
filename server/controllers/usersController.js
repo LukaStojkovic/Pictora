@@ -46,6 +46,8 @@ export async function updateUser(req, res) {
   try {
     const { id } = req.params;
 
+    console.log(req.file);
+
     const user = await User.findByIdAndUpdate(
       id,
       {
@@ -53,7 +55,6 @@ export async function updateUser(req, res) {
         description: req.body.description,
         email: req.body.email,
         firstName: req.body.firstName,
-        lastName: req.body.lastName,
         picturePath: req.file?.filename,
       },
       { runValidators: true, new: true }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../ui/Card";
 import { FiSend } from "react-icons/fi";
 import Post from "./Post";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import useCreatePost from "../hooks/useCreatePost";
 import useUser from "../hooks/useUser";
 import Spinner from "./Spinner";
+import toast from "react-hot-toast";
 
 function HomeMain() {
   const { posts, isLoading: isLoadingFeedPosts } = useGetFeedPosts();
@@ -19,6 +20,14 @@ function HomeMain() {
     reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(
+    function () {
+      if (errors.picture) toast.error("Please upload an image");
+    },
+    [errors.picture]
+  );
+
   if (isLoadingFeedPosts || isLoadingCreatePost) return <Spinner />;
 
   function makePost(data) {
@@ -27,7 +36,9 @@ function HomeMain() {
     formData.append("picture", data.picture[0]);
     formData.append("description", data.description);
     formData.append("userId", user._id);
+
     reset();
+
     createPost(formData);
   }
 

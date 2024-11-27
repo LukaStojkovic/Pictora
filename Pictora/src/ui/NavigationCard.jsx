@@ -1,6 +1,6 @@
 import { HiOutlineHome, HiOutlineLogout } from "react-icons/hi";
 import Card from "./Card";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useUser from "../hooks/useUser";
 import { CiHome, CiSettings, CiUser } from "react-icons/ci";
@@ -19,21 +19,39 @@ export default function NavigationCard() {
         {/* <img src="public/assets/logo/Pictora-dark-logo.png" /> */}
         <h2 className="text-gray-400 mb-3">Navigation</h2>
 
-        <Link to="/" className=" flex gap-2 py-3 items-center">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex gap-2 py-3 items-center ${
+              isActive ? "text-socialBlue" : "text-gray-900"
+            }`
+          }
+        >
           <CiHome size={20} /> Home
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to={`/profile/${user?._id}`}
-          className=" flex gap-2 py-3 items-center"
+          className={({ isActive }) =>
+            `flex gap-2 py-3 items-center ${
+              isActive ? "text-socialBlue" : "text-gray-900"
+            }`
+          }
         >
           <CiUser size={20} />
           My Profile
-        </Link>
+        </NavLink>
 
-        <Link to="/account" className=" flex gap-2 py-3 items-center">
+        <NavLink
+          to="/account"
+          className={({ isActive }) =>
+            `flex gap-2 py-3 items-center ${
+              isActive ? "text-socialBlue" : "text-gray-900"
+            }`
+          }
+        >
           <CiSettings size={20} />
           Settings
-        </Link>
+        </NavLink>
 
         {user && (
           <div className="mt-20">

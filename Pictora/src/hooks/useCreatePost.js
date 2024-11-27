@@ -8,7 +8,7 @@ export function useCreatePost() {
   const { mutate: createPost, isLoading } = useMutation({
     mutationFn: (postData) => createPostApi(postData),
     onSuccess: () => {
-      toast.success("You Created New Post!");
+      toast.success("You created a new post!");
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
     onError: (err) => {
