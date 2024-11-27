@@ -61,10 +61,7 @@ app.use("/users", userRoutes);
 app.use("/post", postRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(PORT, () => console.log(`Connected to Port ${PORT}`));
   })

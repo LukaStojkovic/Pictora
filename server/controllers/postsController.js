@@ -95,3 +95,50 @@ export async function likePost(req, res) {
     });
   }
 }
+
+export async function addComment(req, res) {
+  try {
+    const { id } = req.params;
+    const { userId, text } = req.body;
+
+    console.log(req.body);
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "User does not exist!" });
+    }
+
+    const post = await Post.findById(id);
+
+    if (!post) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Post does not exist!" });
+    }
+
+    const newComment = {
+      userId,
+      text,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userPicturePath: user.picturePath,
+    };
+
+    post.comments.push(newComment);
+
+    await post.save();
+
+    return res.status(200).json({
+      status: "success",
+      post,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+}

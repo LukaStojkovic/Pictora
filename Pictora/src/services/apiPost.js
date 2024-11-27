@@ -58,3 +58,21 @@ export async function likePost(postData, user) {
     console.error(err.message);
   }
 }
+
+export async function createComment(postId, commentData) {
+  try {
+    const post = await axios({
+      method: "POST",
+      url: `http://127.0.0.1:8000/post/${postId}/comment`,
+      data: commentData,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    return post;
+  } catch (err) {
+    console.error(err.message);
+  }
+}
