@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Comment({ comment }) {
   return (
-    <div className="font-bold flex" key={comment._id}>
+    <div className="font-semibold flex" key={comment._id}>
       <Link to={`/profile/${comment.userId}`}>
         <img
           className="rounded-full h-5 w-5 mr-2 items-center"

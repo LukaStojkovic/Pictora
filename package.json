@@ -3,6 +3,8 @@
     "@tanstack/react-query": "^5.60.5",
     "@tanstack/react-query-devtools": "^5.61.0",
     "axios": "^1.7.7",
+    "html-to-text": "^9.0.5",
+    "nodemailer": "^6.9.16",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1"
   }

@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Email } from "../util/email.js";
 
 export const register = async (req, res) => {
   try {
@@ -35,6 +36,9 @@ export const register = async (req, res) => {
       description,
     });
     const user = await newUser.save();
+
+    await new Email(newUser).sendWelcome();
+
     res.status(201).json({
       status: "success",
       user,

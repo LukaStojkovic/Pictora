@@ -52,7 +52,6 @@ function HomeMain() {
               className="border rounded-lg grow py-4 px-4"
               {...register("description", { required: true })}
             />
-
             <button
               type="submit"
               className="bg-socialBlue p-3 rounded-full text-gray-50"

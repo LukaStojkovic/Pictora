@@ -6,6 +6,7 @@ import useUser from "../hooks/useUser";
 import useLikePost from "../hooks/useLikePost";
 import useCreateComment from "../hooks/useCreateComment";
 import Comment from "./Comment";
+import Spinner from "./Spinner";
 
 function Post({ postData }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,14 +14,14 @@ function Post({ postData }) {
 
   const { user } = useUser();
   const { like } = useLikePost();
-  const { createComment, isLoading } = useCreateComment();
+  const { createComment, isLoading: isLoadingComment } = useCreateComment();
 
   const likes = new Map(Object.entries(postData?.likes));
   const likeCount = likes.size;
 
   function handleAddComment() {
     const commentData = {
-      text: comment,
+      text: comment.trim(),
       userId: user._id,
     };
 
@@ -28,6 +29,8 @@ function Post({ postData }) {
 
     setComment("");
   }
+
+  if (isLoadingComment) return <Spinner />;
 
   return (
     <div className="mb-6">
