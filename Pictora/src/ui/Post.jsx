@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { BiLike } from "react-icons/bi";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import useLikePost from "../hooks/useLikePost";
 import useCreateComment from "../hooks/useCreateComment";
 import Comment from "./Comment";
 import Spinner from "./Spinner";
+import useDeletePost from "../hooks/useDeletePost";
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 function Post({ postData }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenComment, setIsOpenComment] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [comment, setComment] = useState("");
 
   const { user } = useUser();
   const { like } = useLikePost();
   const { createComment, isLoading: isLoadingComment } = useCreateComment();
+  const { deletePost, isLoading } = useDeletePost();
+  const ref = useOutsideClick(() => setIsOpenMenu(false));
+
+  const isLoggedInUser = user._id === postData.userId;
 
   const likes = new Map(Object.entries(postData?.likes));
   const likeCount = likes.size;
@@ -30,19 +38,49 @@ function Post({ postData }) {
     setComment("");
   }
 
+  function handleDeletePost() {
+    deletePost(postData._id);
+  }
+
   if (isLoadingComment) return <Spinner />;
 
   return (
     <div className="mb-6">
-      <div className="flex items-center mb-2">
-        <Link to={`/profile/${postData?.userId}`}>
+      <div className="flex items-center mb-2 justify-between">
+        <Link to={`/profile/${postData?.userId}`} className="flex items-center">
           <img
             src={`assets/${postData?.userPicturePath}`}
             alt="User profile picture"
             className="w-10 h-10 rounded-full mr-2"
           />
+          <div className="font-bold">{postData?.firstName}</div>
         </Link>
-        <div className="font-bold">{postData?.firstName}</div>
+        {isLoggedInUser && (
+          <div className="relative">
+            <HiOutlineDotsVertical
+              size={20}
+              className="cursor-pointer"
+              onClick={() => setIsOpenMenu((open) => !open)}
+            />
+            {isOpenMenu && (
+              <div
+                className="absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg w-40 z-10"
+                ref={ref}
+              >
+                <ul className="py-2">
+                  <li>
+                    <button
+                      className="w-full flex gap-2 items-center text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-500"
+                      onClick={handleDeletePost}
+                    >
+                      <FaRegTrashAlt size={15} /> Delete
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className="mb-2">{postData?.description}</div>
       <img
@@ -62,13 +100,13 @@ function Post({ postData }) {
         </div>
         <button
           className="flex items-center gap-1"
-          onClick={() => setIsOpen((open) => !open)}
+          onClick={() => setIsOpenComment((open) => !open)}
         >
           <FaRegComment /> Comment
         </button>
       </div>
 
-      {isOpen && (
+      {isOpenComment && (
         <>
           <div className="mt-4 flex items-center">
             <input

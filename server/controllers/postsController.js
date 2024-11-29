@@ -33,6 +33,30 @@ export async function createPost(req, res) {
     });
   }
 }
+
+export async function deletePost(req, res) {
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findByIdAndDelete(id);
+
+    if (!post)
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Post not found!" });
+
+    res.status(202).json({
+      status: "success",
+      message: "Post deleted successfully",
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+}
+
 export async function getFeedPosts(req, res) {
   try {
     const posts = await Post.find();

@@ -76,3 +76,19 @@ export async function createComment(postId, commentData) {
     console.error(err.message);
   }
 }
+
+export async function deletePost(postId) {
+  try {
+    const data = axios({
+      method: "DELETE",
+      url: `http://127.0.0.1:8000/post/${postId}`,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+
+    return data;
+  } catch (err) {
+    console.error(err.message);
+  }
+}
