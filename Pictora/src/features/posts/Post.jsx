@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { BiLike } from "react-icons/bi";
 import { FaRegComment, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import useUser from "../hooks/useUser";
-import useLikePost from "../hooks/useLikePost";
-import useCreateComment from "../hooks/useCreateComment";
+import useUser from "../../hooks/useUser";
+import useLikePost from "../../hooks/useLikePost";
+import useCreateComment from "../../hooks/useCreateComment";
 import Comment from "./Comment";
-import Spinner from "./Spinner";
-import useDeletePost from "../hooks/useDeletePost";
+import Spinner from "../../ui/Spinner";
+import useDeletePost from "../../hooks/useDeletePost";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import useOutsideClick from "../hooks/useOutsideClick";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 function Post({ postData }) {
   const [isOpenComment, setIsOpenComment] = useState(false);

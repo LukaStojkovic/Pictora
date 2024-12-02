@@ -39,8 +39,23 @@ export async function updateUser(id, userData) {
     },
   });
 
-  if (!response.data || !response.data.data)
-    throw new Error("Something went wrong!");
+  if (!response.data) throw new Error("Something went wrong!");
 
   return response.data.data.user;
+}
+
+export async function updateUserPassword(id, userData) {
+  const response = await axios({
+    method: "PATCH",
+    url: `http://127.0.0.1:8000/users/${id}/password`,
+    data: userData,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response) throw new Error("Something went wrong!");
+
+  return response.data.data;
 }

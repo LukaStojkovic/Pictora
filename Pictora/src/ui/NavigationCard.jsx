@@ -1,22 +1,24 @@
-import { HiOutlineHome, HiOutlineLogout } from "react-icons/hi";
+import { HiOutlineLogout } from "react-icons/hi";
 import Card from "./Card";
 import { Link, NavLink } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useUser from "../hooks/useUser";
 import { CiHome, CiSettings, CiUser } from "react-icons/ci";
+import Spinner from "./Spinner";
 
 export default function NavigationCard() {
-  const { user, isLoading } = useUser();
+  const { user, isLoading: isLoadingUser } = useUser();
   const { logout } = useLogout();
 
   function handleLogout() {
     logout();
   }
 
+  if (isLoadingUser) return <Spinner />;
+
   return (
     <Card>
       <div className="px-4">
-        {/* <img src="public/assets/logo/Pictora-dark-logo.png" /> */}
         <h2 className="text-gray-400 mb-3">Navigation</h2>
 
         <NavLink

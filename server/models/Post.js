@@ -34,7 +34,7 @@ const postSchema = new mongoose.Schema(
             ref: "User",
             required: true,
           },
-          text: { type: String, required: true },
+          text: { type: String, required: true, maxlength: 150 },
           firstName: { type: String, required: true },
           lastName: { type: String, required: true },
           userPicturePath: { type: String },

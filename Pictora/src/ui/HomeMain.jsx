@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Card from "../ui/Card";
 import { FiSend } from "react-icons/fi";
-import Post from "./Post";
+import Post from "../features/posts/Post";
 import useGetFeedPosts from "../hooks/useGetFeedPosts";
 import { CiImageOn, CiFileOn } from "react-icons/ci";
 import { useForm } from "react-hook-form";
