@@ -1,7 +1,9 @@
 import express from "express";
 import {
+  addRemoveFriend,
   getMe,
   getUser,
+  getUserFriends,
   updateUser,
   updateUserPassword,
 } from "../controllers/usersController.js";
@@ -21,11 +23,14 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
 router.use(verifyToken);
 
 router.get("/getMe", getMe);
 router.get("/:id", getUser);
+router.get("/:id/friends", getUserFriends);
 router.patch("/:id", upload.single("picture"), resizeUserPhoto, updateUser);
 router.patch("/:id/password", updateUserPassword);
+router.patch("/:id/:friendId", addRemoveFriend);
 
 export default router;

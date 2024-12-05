@@ -10,6 +10,7 @@ import Spinner from "../../ui/Spinner";
 import useDeletePost from "../../hooks/useDeletePost";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import AddFriendButton from "../../ui/AddFriendButton";
 
 function Post({ postData }) {
   const [isOpenComment, setIsOpenComment] = useState(false);
@@ -55,7 +56,7 @@ function Post({ postData }) {
           />
           <div className="font-bold">{postData?.firstName}</div>
         </Link>
-        {isLoggedInUser && (
+        {isLoggedInUser ? (
           <div className="relative">
             <HiOutlineDotsVertical
               size={20}
@@ -80,6 +81,8 @@ function Post({ postData }) {
               </div>
             )}
           </div>
+        ) : (
+          <AddFriendButton friendId={postData.userId} />
         )}
       </div>
       <div className="mb-2">{postData?.description}</div>

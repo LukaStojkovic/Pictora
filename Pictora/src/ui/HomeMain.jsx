@@ -76,7 +76,7 @@ function HomeMain() {
           </div>
         </form>
       </Card>
-      <Card>
+      <Card className="w-[632px]">
         {posts?.data.posts?.length > 0 ? (
           posts.data.posts.map((post) => (
             <Post key={post._id} postData={post} />
