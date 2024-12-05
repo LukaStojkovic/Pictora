@@ -6,7 +6,7 @@ function ProfilePost({ postData }) {
       <div className="border p-4 rounded-md">
         <p className="text-gray-800 font-medium">{postData?.description}</p>
         <img
-          src={`${import.meta.env.VITE_API_URL}/public/assets/${
+          src={`${import.meta.env.VITE_API_URL}/assets/${
             postData?.picturePath
           }`}
           alt="Post"

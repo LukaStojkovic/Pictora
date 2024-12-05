@@ -50,7 +50,7 @@ function Post({ postData }) {
       <div className="flex items-center mb-2 justify-between">
         <Link to={`/profile/${postData?.userId}`} className="flex items-center">
           <img
-            src={`${import.meta.env.VITE_API_URL}/public/assets/${
+            src={`${import.meta.env.VITE_API_URL}/assets/${
               postData?.userPicturePath
             }`}
             alt="User profile picture"
