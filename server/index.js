@@ -60,6 +60,10 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/post", postRoutes);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
