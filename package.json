@@ -7,5 +7,8 @@
     "nodemailer": "^6.9.16",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
