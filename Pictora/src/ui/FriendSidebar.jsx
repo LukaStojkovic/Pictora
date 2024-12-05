@@ -27,7 +27,9 @@ function FriendSidebar() {
                   >
                     <img
                       className="rounded-full h-10 w-10"
-                      src={`/assets/${friend.picturePath}`}
+                      src={`${import.meta.env.VITE_API_URL}/assets/${
+                        friend.picturePath
+                      }`}
                     />
                     <div className="text-sm">
                       <p>{friend.firstName.concat(" ", friend.lastName)}</p>

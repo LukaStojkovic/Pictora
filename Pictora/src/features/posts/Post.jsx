@@ -89,7 +89,7 @@ function Post({ postData }) {
       </div>
       <div className="mb-2">{postData?.description}</div>
       <img
-        src={`assets/${postData?.picturePath}`}
+        src={`${import.meta.env.VITE_API_URL}/assets/${postData?.picturePath}`}
         alt="Post image"
         className="w-full rounded-lg"
       />
