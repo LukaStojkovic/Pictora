@@ -38,6 +38,7 @@ export async function getUserPosts(userId) {
 
   if (!userPosts) throw new Error("Something went wrong!");
   return userPosts;
+}
 
 export async function likePost(postData, user) {
   try {
