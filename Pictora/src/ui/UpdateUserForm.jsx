@@ -97,7 +97,9 @@ function UpdateUserForm() {
         </label>
         <div className="flex gap-4 items-center justify-center">
           <img
-            src={`/assets/${user?.picturePath}`}
+            src={`${import.meta.env.VITE_API_URL}/public/assets/${
+              user?.picturePath
+            }`}
             className="rounded-[50%] h-[4.5rem] w-[4.5rem]"
           />
           <input
