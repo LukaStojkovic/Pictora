@@ -60,7 +60,7 @@ export default function NavigationCard() {
             <div className="flex items-center mb-2">
               <Link to={`/profile/${user._id}`}>
                 <img
-                  src={`/assets/${user.picturePath}`}
+                  src={`https://pictora-backend-rr5z.onrender.com/assets/${user.picturePath}`}
                   alt="User profile picture"
                   className="w-10 h-10 rounded-full mr-2"
                 />

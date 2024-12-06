@@ -6,7 +6,7 @@ function ProfilePost({ postData }) {
       <div className="border p-4 rounded-md">
         <p className="text-gray-800 font-medium">{postData?.description}</p>
         <img
-          src={`/assets/${postData?.picturePath}`}
+          src={`https://pictora-backend-rr5z.onrender.com/assets/${postData?.picturePath}`}
           alt="Post"
           className="rounded-md mt-2"
         />

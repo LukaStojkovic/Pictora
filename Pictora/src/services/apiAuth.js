@@ -5,7 +5,7 @@ export async function register(userData) {
   try {
     const data = await axios({
       method: "post",
-      url: `http://127.0.0.1:8000/auth/register`,
+      url: `https://pictora-backend-rr5z.onrender.com/auth/register`,
       data: userData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -22,7 +22,7 @@ export async function register(userData) {
 export async function login(userData) {
   const data = await axios({
     method: "post",
-    url: `http://127.0.0.1:8000/auth/login`,
+    url: `https://pictora-backend-rr5z.onrender.com/auth/login`,
     data: userData,
   });
 

@@ -3,7 +3,7 @@ import axios from "axios";
 export async function getFeedPosts() {
   const posts = await axios({
     method: "get",
-    url: `http://127.0.0.1:8000/post/`,
+    url: `https://pictora-backend-rr5z.onrender.com/post/`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -16,7 +16,7 @@ export async function getFeedPosts() {
 export async function createPost(postData) {
   const newPost = await axios({
     method: "POST",
-    url: `http://127.0.0.1:8000/post/`,
+    url: `https://pictora-backend-rr5z.onrender.com/post/`,
     data: postData,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -30,7 +30,7 @@ export async function createPost(postData) {
 export async function getUserPosts(userId) {
   const userPosts = await axios({
     method: "GET",
-    url: `http://127.0.0.1:8000/post/${userId}`,
+    url: `https://pictora-backend-rr5z.onrender.com/post/${userId}`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -43,7 +43,7 @@ export async function getUserPosts(userId) {
 export async function likePost(postData, user) {
   try {
     const response = await axios.patch(
-      `http://127.0.0.1:8000/post/${postData?._id}/like`,
+      `https://pictora-backend-rr5z.onrender.com/post/${postData?._id}/like`,
       { userId: user?._id },
       {
         headers: {
@@ -62,7 +62,7 @@ export async function createComment(postId, commentData) {
   try {
     const post = await axios({
       method: "POST",
-      url: `http://127.0.0.1:8000/post/${postId}/comment`,
+      url: `https://pictora-backend-rr5z.onrender.com/post/${postId}/comment`,
       data: commentData,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -80,7 +80,7 @@ export async function deletePost(postId) {
   try {
     const data = axios({
       method: "DELETE",
-      url: `http://127.0.0.1:8000/post/${postId}`,
+      url: `https://pictora-backend-rr5z.onrender.com/post/${postId}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
