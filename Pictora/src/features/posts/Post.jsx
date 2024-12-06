@@ -20,7 +20,7 @@ function Post({ postData }) {
   const { user } = useUser();
   const { like } = useLikePost();
   const { createComment, isLoading: isLoadingComment } = useCreateComment();
-  const { deletePost, isLoading } = useDeletePost();
+  const { deletePost } = useDeletePost();
   const ref = useOutsideClick(() => setIsOpenMenu(false));
 
   const isLoggedInUser = user?._id === postData.userId;
