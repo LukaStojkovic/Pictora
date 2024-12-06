@@ -59,6 +59,9 @@ app.post(
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/post", postRoutes);
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
 
 mongoose
   .connect(process.env.MONGO_URL)
