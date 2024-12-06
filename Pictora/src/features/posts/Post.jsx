@@ -23,7 +23,7 @@ function Post({ postData }) {
   const { deletePost, isLoading } = useDeletePost();
   const ref = useOutsideClick(() => setIsOpenMenu(false));
 
-  const isLoggedInUser = user._id === postData.userId;
+  const isLoggedInUser = user?._id === postData.userId;
 
   const likes = new Map(Object.entries(postData?.likes));
   const likeCount = likes.size;
@@ -31,16 +31,16 @@ function Post({ postData }) {
   function handleAddComment() {
     const commentData = {
       text: comment.trim(),
-      userId: user._id,
+      userId: user?._id,
     };
 
-    createComment({ postId: postData._id, commentData });
+    createComment({ postId: postData?._id, commentData });
 
     setComment("");
   }
 
   function handleDeletePost() {
-    deletePost(postData._id);
+    deletePost(postData?._id);
   }
 
   if (isLoadingComment) return <Spinner />;
@@ -50,9 +50,7 @@ function Post({ postData }) {
       <div className="flex items-center mb-2 justify-between">
         <Link to={`/profile/${postData?.userId}`} className="flex items-center">
           <img
-            src={`${import.meta.env.VITE_API_URL}/assets/${
-              postData?.userPicturePath
-            }`}
+            src={`assets/${postData?.userPicturePath}`}
             alt="User profile picture"
             className="w-10 h-10 rounded-full mr-2"
           />
@@ -89,7 +87,7 @@ function Post({ postData }) {
       </div>
       <div className="mb-2">{postData?.description}</div>
       <img
-        src={`${import.meta.env.VITE_API_URL}/assets/${postData?.picturePath}`}
+        src={`assets/${postData?.picturePath}`}
         alt="Post image"
         className="w-full rounded-lg"
       />

@@ -7,6 +7,8 @@ function AboutMe() {
   const { userId } = useParams();
   const { user } = getUserById(userId);
 
+  if (!userId || !user) return null;
+
   return (
     <>
       {user?.aboutMe && (

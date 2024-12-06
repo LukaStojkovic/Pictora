@@ -125,8 +125,6 @@ export async function addComment(req, res) {
     const { id } = req.params;
     const { userId, text } = req.body;
 
-    console.log(req.body);
-
     const user = await User.findById(userId);
 
     if (!user) {

@@ -26,7 +26,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.json());
-app.use(cors({ origin: "https://pictora-x7jn.onrender.com" }));
+app.use(cors());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
@@ -59,10 +59,6 @@ app.post(
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/post", postRoutes);
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
 
 mongoose
   .connect(process.env.MONGO_URL)

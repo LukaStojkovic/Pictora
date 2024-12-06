@@ -5,7 +5,7 @@ export async function register(userData) {
   try {
     const data = await axios({
       method: "post",
-      url: `${import.meta.env.VITE_API_URL}/auth/register`,
+      url: `http://127.0.0.1:8000/auth/register`,
       data: userData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -22,7 +22,7 @@ export async function register(userData) {
 export async function login(userData) {
   const data = await axios({
     method: "post",
-    url: `${import.meta.env.VITE_API_URL}/auth/login`,
+    url: `http://127.0.0.1:8000/auth/login`,
     data: userData,
   });
 

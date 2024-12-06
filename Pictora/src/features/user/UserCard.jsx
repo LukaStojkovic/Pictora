@@ -12,13 +12,15 @@ function UserCard() {
   const { user } = getUserById(userId);
   const isLoggedInUser = userId === loggedUser?._id;
 
+  if (!userId || !user) return null;
+
   return (
     <Card className="w-[632px] flex flex-col">
       <div className="flex justify-between items-start">
         <div className="flex items-center gap-4">
           {user?.picturePath && (
             <img
-              src={`${import.meta.env.VITE_API_URL}/assets/${user.picturePath}`}
+              src={`/assets/${user.picturePath}`}
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover"
             />

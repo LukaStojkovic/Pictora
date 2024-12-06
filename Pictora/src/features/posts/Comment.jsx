@@ -7,9 +7,7 @@ function Comment({ comment }) {
       <Link to={`/profile/${comment.userId}`}>
         <img
           className="rounded-full h-5 w-5 mr-2 items-center"
-          src={`${import.meta.env.VITE_API_URL}/assets/${
-            comment.userPicturePath
-          }`}
+          src={`/assets/${comment.userPicturePath}`}
         />
       </Link>
       <p>

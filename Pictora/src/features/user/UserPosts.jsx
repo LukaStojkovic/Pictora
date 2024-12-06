@@ -11,6 +11,8 @@ function UserPosts() {
   const { user } = getUserById(userId);
   const { userPosts, isLoading } = useGetUserPosts(userId);
 
+  if (!userId || !user) return <p>User does not exist!</p>;
+
   if (isLoading) return <Spinner />;
 
   return (

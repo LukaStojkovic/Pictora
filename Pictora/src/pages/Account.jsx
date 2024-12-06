@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../ui/Card";
-import UpdateUserPasswordForm from "../ui/UpdateUserPasswordForm";
+import UpdateUserPasswordForm from "../ui/updateUserPasswordForm";
 import UpdateUserForm from "../ui/UpdateUserForm";
 
 function Account() {

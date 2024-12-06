@@ -60,9 +60,7 @@ export default function NavigationCard() {
             <div className="flex items-center mb-2">
               <Link to={`/profile/${user._id}`}>
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/assets/${
-                    user.picturePath
-                  }`}
+                  src={`/assets/${user.picturePath}`}
                   alt="User profile picture"
                   className="w-10 h-10 rounded-full mr-2"
                 />
