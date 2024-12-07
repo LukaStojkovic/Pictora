@@ -3,7 +3,7 @@ import axios from "axios";
 export async function getMe() {
   const user = await axios({
     method: "GET",
-    url: `https://pictora-backend-rr5z.onrender.com/users/getMe`,
+    url: `https://pictora-backend.vercel.app/users/getMe`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -17,7 +17,7 @@ export async function getMe() {
 export async function getUser(id) {
   const user = await axios({
     method: "GET",
-    url: `https://pictora-backend-rr5z.onrender.com/users/${id}`,
+    url: `https://pictora-backend.vercel.app/users/${id}`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -31,7 +31,7 @@ export async function getUser(id) {
 export async function getUserFriends(id) {
   const friends = await axios({
     method: "GET",
-    url: `https://pictora-backend-rr5z.onrender.com/users/${id}/friends`,
+    url: `https://pictora-backend.vercel.app/users/${id}/friends`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -43,7 +43,7 @@ export async function getUserFriends(id) {
 export async function updateUser(id, userData) {
   const response = await axios({
     method: "PATCH",
-    url: `https://pictora-backend-rr5z.onrender.com/users/${id}`,
+    url: `https://pictora-backend.vercel.app/users/${id}`,
     data: userData,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -59,7 +59,7 @@ export async function updateUser(id, userData) {
 export async function updateUserPassword(id, userData) {
   const response = await axios({
     method: "PATCH",
-    url: `https://pictora-backend-rr5z.onrender.com/users/${id}/password`,
+    url: `https://pictora-backend.vercel.app/users/${id}/password`,
     data: userData,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -75,7 +75,7 @@ export async function updateUserPassword(id, userData) {
 export async function addRemoveFriend(userId, friendId) {
   const response = await axios({
     method: "PATCH",
-    url: `https://pictora-backend-rr5z.onrender.com/users/${userId}/${friendId}`,
+    url: `https://pictora-backend.vercel.app/users/${userId}/${friendId}`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",

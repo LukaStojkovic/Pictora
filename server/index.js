@@ -39,6 +39,7 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "https://vercel.live"],
+      connectSrc: ["'self'", "https://vercel.live"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },

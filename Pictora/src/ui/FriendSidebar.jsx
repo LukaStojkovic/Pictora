@@ -27,7 +27,7 @@ function FriendSidebar() {
                   >
                     <img
                       className="rounded-full h-10 w-10"
-                      src={`https://pictora-backend-rr5z.onrender.com/assets/${friend.picturePath}`}
+                      src={`https://pictora-backend.vercel.app/assets/${friend.picturePath}`}
                     />
                     <div className="text-sm">
                       <p>{friend.firstName.concat(" ", friend.lastName)}</p>

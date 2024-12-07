@@ -50,7 +50,7 @@ function Post({ postData }) {
       <div className="flex items-center mb-2 justify-between">
         <Link to={`/profile/${postData?.userId}`} className="flex items-center">
           <img
-            src={`https://pictora-backend-rr5z.onrender.com/assets/${postData?.userPicturePath}`}
+            src={`https://pictora-backend.vercel.app/assets/${postData?.userPicturePath}`}
             alt="User profile picture"
             className="w-10 h-10 rounded-full mr-2"
           />
@@ -87,7 +87,7 @@ function Post({ postData }) {
       </div>
       <div className="mb-2">{postData?.description}</div>
       <img
-        src={`https://pictora-backend-rr5z.onrender.com/assets/${postData?.picturePath}`}
+        src={`https://pictora-backend.vercel.app/assets/${postData?.picturePath}`}
         alt="Post image"
         className="w-full rounded-lg"
       />

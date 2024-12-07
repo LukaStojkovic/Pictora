@@ -5,7 +5,7 @@ export async function register(userData) {
   try {
     const data = await axios({
       method: "post",
-      url: `https://pictora-backend-rr5z.onrender.com/auth/register`,
+      url: `https://pictora-backend.vercel.app/auth/register`,
       data: userData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -22,7 +22,7 @@ export async function register(userData) {
 export async function login(userData) {
   const data = await axios({
     method: "post",
-    url: `https://pictora-backend-rr5z.onrender.com/auth/login`,
+    url: `https://pictora-backend.vercel.app/auth/login`,
     data: userData,
   });
 
