@@ -47,8 +47,6 @@ export async function updateUser(req, res) {
   try {
     const { id } = req.params;
 
-    console.log(req.file);
-
     const user = await User.findByIdAndUpdate(
       id,
       {

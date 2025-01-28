@@ -20,7 +20,7 @@ function UserCard() {
         <div className="flex items-center gap-4">
           {user?.picturePath && (
             <img
-              src={`https://pictora-backend-rr5z.onrender.com/assets/${user.picturePath}`}
+              src={`/assets/${user.picturePath}`}
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover"
             />

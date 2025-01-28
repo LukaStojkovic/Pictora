@@ -6,7 +6,7 @@ function ProfilePost({ postData }) {
       <div className="border p-4 rounded-md">
         <p className="text-gray-800 font-medium">{postData?.description}</p>
         <img
-          src={`https://pictora-backend.vercel.app/assets/${postData?.picturePath}`}
+          src={`/assets/${postData?.picturePath}`}
           alt="Post"
           className="rounded-md mt-2"
         />
